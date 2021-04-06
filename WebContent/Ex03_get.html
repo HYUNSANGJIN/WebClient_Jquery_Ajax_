@@ -19,8 +19,9 @@
 				// callback 함수 : 응답이 왔고 정상이라면
 				console.log(data);
 			// 여기서부터 비동기 아니고 jquery임
-			$('#display').empty(); // 자식요소 제거하기 -> empty
+			$('#display').empty(); // 자식요소 제거하기 -> empty  (DATA라고 써져있는게 버튼 클릭시 지워짐)
 			console.log($(data).find('Company'));  // find -> 필터함수 원하는것만 거를수 있음
+			// Company만 가져옴
 			// find함수 >>  return Array[,]
 			
 			// $().each(function(index, element){})

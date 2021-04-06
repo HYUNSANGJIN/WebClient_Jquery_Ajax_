@@ -60,7 +60,10 @@
  	$(function(){	//페이지가 로드되면 이 함수를 실행하겠다
  		$('#btn').click(function() {
  			//$('#display').load("Ex01_Server_Date.jsp")	 // load함수(간단한 비동기처리)
+ 			
+ 			
  			$('#display').load("Ex01_Server_Date.jsp",{"msg" : $('#msg2').val()},
+ 						// 			url 							data
  							function(responseText, textStatus, xhr){
  							// function은 응답이 오면 readyState가 4라면 호출된다
  							
@@ -71,6 +74,9 @@
  							if(textStatus == "success"){  // 제이쿼리가 만든거임
  								// 응답 4, status code : 200
  								console.log("responseText : " + responseText);
+ 							//	String html = "<div>" + msg + sdf.format(new Date().getTime()) + "</div>";
+ 							//						ㄴ console출력문
+ 							
  							} else{
  								// 응답4, status code가 500 , 404인경우
  								console.log("response fail : " + xhr.status + " , " + xhr.statusText);
@@ -94,7 +100,7 @@
 	<input type="text" name="msg2" id="msg2">
 	<input type="button" id="btn" value="비동기 전송">
 	
-	<div id="display"></div>
+	<div id="display"></div> <!-- 비동기 전송하면 여기다가 띄우고 싶어서 만들었어용 -->
 </body>
 </html>
 

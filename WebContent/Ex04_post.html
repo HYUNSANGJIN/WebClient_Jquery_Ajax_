@@ -30,6 +30,7 @@
 					const data = {"name":$('#name').val(), "pwd": $('#pwd').val()}
 					$.post("Ex04_Server.jsp",data , function(responsedata) {
 						$('#message').html(responsedata);
+						
 					});
 					
 				});

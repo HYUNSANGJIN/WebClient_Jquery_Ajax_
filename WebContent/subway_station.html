@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+  // http://openapi.seoul.go.kr:8088/737251747373736f363577544a5665/json/SearchSTNBySubwayLineInfo/1/300/		
+
+
+			
+		$(function() {
+
+				$('#btn').click(function() {
+				const subAPI = "http://openapi.seoul.go.kr:8088/737251747373736f363577544a5665/json/SearchSTNBySubwayLineInfo/1/300/";
+			
+			
+					const data = {st : $('#station').val()}
+					console.log(data);
+					
+					$.getJSON(subAPI,data, function(data, textStatus,xhr ){
+						
+						console.log(data.SearchSTNBySubwayLineInfo);
+						console.log(textStatus);
+						console.log(xhr.readyState);
+						
+						$('#tbody').empty();
+						$.each(data.SearchSTNBySubwayLineInfo.row, function(index, obj){
+							let temp = "<tr><td>"+ obj.STATION_NM +"</td><td>"+ obj.STATION_NM_ENG +"</td><td>"+ obj.LINE_NUM +"</td></tr>";
+							$('#tbody').append(temp);
+						});
+						
+					});
+			});
+		});
+	
+</script>
+<style type="text/css">
+		#wrap {
+			width: 80%;
+			margin: auto;
+		}
+		
+		#article > #movieTable {
+			width: 80%;
+			margin: auto;
+			
+		}
+		
+	</style>
+</head>
+<body>
+		<div id="wrap">
+		<header id="header">
+		<h1>지하철역</h1>
+		</header>
+		<form action="subAPI" method="get">
+			  <input list="stations" name="station" id="station">
+			  <datalist id="stations">
+    <option value="--선택--">
+    <option value="1호선">
+    <option value="2호선">
+    <option value="3호선">
+    <option value="4호선">
+    <option value="5호선">
+    <option value="6호선">
+    <option value="7호선">
+    <option value="8호선">
+    <option value="9호선">
+			  </datalist>
+			  <input type="button" id="btn" value="검색">
+			</form>
+		
+		</select> 
+		
+		<hr>
+		<article id="article">
+			<table id="stationTable" border="1">
+				<thead><tr><td>역이름(KR)</td><td>역이름(EG)</td><td>호선</td></tr></thead>
+				<tbody id="tbody"></tbody>
+			</table>
+		</article>
+	</div>
+</body>
+</html>

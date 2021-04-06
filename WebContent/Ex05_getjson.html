@@ -21,6 +21,8 @@
 						console.log(data);
 						//가공(개발자 마음)
 						//response >> [{},{},{},{}]
+						
+						
 						//문제) Table 만들고  Table td안에 num, name값을 출력하세요
 						//$.each()
 						//결과를 append >> id="display" div태그에
@@ -37,7 +39,8 @@
 						let table="<table border='1'>";
 	            		//each 문사용해서 tr , td 만들고 서버에서 받은 데이터 넣고 ....
 	            		table+="<tr><th>INDEX</th><th>NUM</th><th>NAME</th></tr>";
-	            			$.each(data,function(index,obj){
+	            			$.each(data,function(index,obj){ // index : 배열의 인덱스 또는 객체의 키
+	            										   	// obj : 해당 인덱스나 키가 가진 값
 	            				for(let key in obj){
 	            					console.log("key :" + key);
 	            					console.log(obj[key]); //key 던지면  value 얻는다
