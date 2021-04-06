@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	
+	 /* 
+    jQuery.get( url [, data ] [, success ] [, dataType ] )
+    전송방식 GET >> open("GET")
+ 	*/
+
+	
+	$(function() {
+		$('#btn').click(function() {
+			// 비동기 함수 -> $.get
+			$.get("Ex03_Company.xml",function(data){
+				// callback 함수 : 응답이 왔고 정상이라면
+				console.log(data);
+			// 여기서부터 비동기 아니고 jquery임
+			$('#display').empty(); // 자식요소 제거하기 -> empty
+			console.log($(data).find('Company'));  // find -> 필터함수 원하는것만 거를수 있음
+			// find함수 >>  return Array[,]
+			
+			// $().each(function(index, element){})
+			$(data).find('Company').each(function(){
+				// this 사용 
+				// index랑 element쓰는게 좋은데 학습 목적으로 this쓰기
+				//console.log(this);
+				let entry = $(this);
+				/* 
+					entry는 이 한덩어리 말하는거임
+				
+					<Company CompanyType="private">
+					<CompanyName>Bit</CompanyName>
+					<CompanyNumber>2019</CompanyNumber>
+					<CompanyAddress>서울시 서초구</CompanyAddress>
+					<Name></Name>
+					</Company>
+				*/
+				let html = "<div>" + entry.attr('CompanyType') + "</div>"; 
+				                       //  ㄴ 속성값 뽑기
+					html += "<div>" + entry.find('CompanyName').text() + "</div>"; 
+					html += "<div>" + entry.find('CompanyNumber').text() + "</div>";  
+					html += "<div>" + entry.find('CompanyAddress').text() + "</div>"; 
+					html += "<div>" + entry.find('Name').text() + "</div>"; 
+					
+					$('#display').append(html);
+			});
+			});
+		});
+	});
+	</script>
+</head>
+<body>
+		<input type="button" id="btn" value="회사소개">
+		<div id="display" style="background-color: gray">DATA</div>
+</body>
+</html>
